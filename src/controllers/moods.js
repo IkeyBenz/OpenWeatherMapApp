@@ -8,10 +8,11 @@ const Mood = mongoose.model('mood', mongoose.Schema({
 }));
 
 router.post('/api/moods', (req, res) => {
+  console.log(req.body);
   const newMood = new Mood(req.body);
   newMood.save()
     .then(() => res.status(200).end())
-    .catch((err) => res.status(501).send(err));
+    .catch((err) => res.status(400).send(err));
 });
 
 module.exports = router;
