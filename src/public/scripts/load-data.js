@@ -1,5 +1,16 @@
-$(document).ready(() => {
-  const getWeather = fetch('/api/weather').then((res) => res.json());
+$(document).ready(async () => {
+  let endpoint = '/api/weather';
+
+  if (navigator.geolocation) {
+    await new Promise((resolve) => {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        endpoint += `?zipcode=${pos.address.postalCode}`;
+        resolve();
+      });
+    });
+  }
+
+  const getWeather = fetch(endpoint).then((res) => res.json());
 
   function displayData(data) {
     const {

@@ -7,6 +7,10 @@ weather.setAPPID(process.env.OPENWEATHERMAP_API_KEY);
 
 
 router.get('/api/weather', (req, res) => {
+  if (req.body.zipcode) {
+    weather.setZipCode(req.body.zipcode);
+  }
+
   weather.getAllWeather((_, json) => res.json(json));
 });
 
