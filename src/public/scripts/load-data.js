@@ -2,14 +2,15 @@ $(document).ready(async () => {
   let endpoint = '/api/weather';
 
   if (navigator.geolocation) {
-    await new Promise((resolve) => {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        endpoint += `?zipcode=${pos.address.postalCode}`;
-        resolve();
-      });
+    await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    }).then((pos) => {
+      endpoint += `?zipcode=${pos.address.postalCode}`;
+    }).catch(() => {
+      alert('You have not allowed us to use your current location. Service denied.');
     });
   }
-
+  console.log(endpoint);
   const getWeather = fetch(endpoint).then((res) => res.json());
 
   function displayData(data) {

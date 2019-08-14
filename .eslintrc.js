@@ -15,6 +15,7 @@ module.exports = {
     "sourceType": "module"
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "no-alert": "off" // Don't want to make custom alerts.
   }
 };
