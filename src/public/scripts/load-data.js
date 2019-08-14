@@ -10,7 +10,6 @@ $(document).ready(async () => {
       alert('You have not allowed us to use your current location. Service denied.');
     });
   }
-  console.log(endpoint);
   const getWeather = fetch(endpoint).then((res) => res.json());
 
   function displayData(data) {
