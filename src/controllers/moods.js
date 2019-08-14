@@ -7,12 +7,15 @@ const Mood = mongoose.model('mood', mongoose.Schema({
   weather_id: { type: String, required: true },
 }));
 
-router.post('/api/moods', (req, res) => {
-  console.log(req.body);
-  const newMood = new Mood(req.body);
-  newMood.save()
-    .then(() => res.status(200).end())
-    .catch((err) => res.status(400).send(err));
+router.post('/api/moods', async (req, res) => {
+  try {
+    const newMood = new Mood(req.body);
+    const previous = await Mood.find({ weather_id: newMood.weather_id });
+    await newMood.save();
+    return res.status(200).send(previous);
+  } catch (e) {
+    return res.status(400).send(e);
+  }
 });
 
 module.exports = router;

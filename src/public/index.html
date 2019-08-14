@@ -16,11 +16,14 @@
     <h1 class="display-3"><span id="weather-temp"></span> <span id="weather-main"></span></h1>
     <p class="lead" id="weather-description">With a chance of meatballs</p>
 
-    <form class="form-group" id="mood-form" action="/api/moods/">
-      <label for="">How is the current weather making you feel?</label>
-      <input type="text" class="form-control" name="val" placeholder="Great!">
-      <input type="hidden" name="weather_id">
-    </form>
+    <div id="dynamic-content">
+      <form class="form-group" id="mood-form" action="/api/moods/">
+        <label for="">How is the current weather making you feel?</label>
+        <input type="text" class="form-control" name="val" placeholder="Great!">
+        <input type="hidden" name="weather_id">
+      </form>
+    </div>
+
 
   </div>
 
